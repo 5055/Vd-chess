@@ -52,7 +52,7 @@ void update() {
         }
       }
     }
-  }
+  } 
   for (int i =0; i<wpiece.length; i++) {
     if ((i%10000 -2000) <6000) {
       if ((i%1000 -200) <600) {

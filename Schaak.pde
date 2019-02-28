@@ -24,20 +24,29 @@ void schaak( piece[] tpiece, piece[] opiece, int piececo, int[] Kcords) {
         }
       }
       arrayCopy(Kcords, npiece[piececo].cordinates );
-
+      for (int i =0; i<wpiece.length; i++) {
+                if ((i%10000 -2000) <6000) {
+          if ((i%1000 -200) <600) {
+            if ((i%100 -20) <60) {
+              if ((i%10 -2) <6) {
+      if(Arrays.equals(npiece[piececo].cordinates, opiece[i].cordinates)){
+        opiece[i].exist = false;
+      }
+              }
+            }
+          }
+      }
+      }
       arrayCopy(npiece[piececo].cordinates, countcord);
       arrayCopy(npiece[kingnum].cordinates, nKcord); 
       //  println(npiece[0].cordinates);
-      /*  if (Arrays.equals(npiece[piececo].cordinates, countcord)) {
-       println("g");
-       }*/
       int[] tcountcord = new int[demensions];
       for (int i =0; i<wpiece.length; i++) {
         if ((i%10000 -2000) <6000) {
           if ((i%1000 -200) <600) {
             if ((i%100 -20) <60) {
               if ((i%10 -2) <6) {
-                if (opiece[i].name.charAt(1) == 'R' ||opiece[i].name.charAt(1) == 'Q' ) {
+                if ((opiece[i].name.charAt(1) == 'R' ||opiece[i].name.charAt(1) == 'Q')&&opiece[i].exist ) {
                   for (int k =0; k<demensions; k++) {
                     arrayCopy(nKcord, tcountcord); 
                     for (int j =0; j<8; j++) {
@@ -59,12 +68,13 @@ void schaak( piece[] tpiece, piece[] opiece, int piececo, int[] Kcords) {
                         Rookschaak(npiece, opiece, kingnum, nKcord, i);
                         if (schaakrookscheck) {
                           selfschaak = false;
+                          println("uuu");
                         }
                       }
                     }
                   }
                 }
-                if (opiece[i].name.charAt(1) == 'B'||opiece[i].name.charAt(1) == 'Q' ) {
+                if ((opiece[i].name.charAt(1) == 'B'||opiece[i].name.charAt(1) == 'Q' )&&opiece[i].exist) {
                   int bcordblock = 0;
                   int Bfirstcord= opiece[i].cordinates[0] -npiece[kingnum].cordinates[0];
                   for (int k =0; k<demensions; k++) {
@@ -76,10 +86,11 @@ void schaak( piece[] tpiece, piece[] opiece, int piececo, int[] Kcords) {
                     Bischschaak(npiece, opiece, kingnum, nKcord, i);
                     if (schaakrookscheck) {
                       selfschaak = false;
+                      println("hhh");
                     }
                   }
                 }
-                if (opiece[i].name.charAt(1) == 'N') {
+                if ((opiece[i].name.charAt(1) == 'N')&&opiece[i].exist) {
                   int N1 =0;
                   int N2 = 0;
                   for (int k =0; k<demensions; k++) {
@@ -92,9 +103,10 @@ void schaak( piece[] tpiece, piece[] opiece, int piececo, int[] Kcords) {
                   }
                   if (N1 == demensions-1 && N2 ==1) {
                     selfschaak = false;
+                    println("wwww");
                   }
                 }
-                if (opiece[i].name.charAt(1) =='P') {
+                if ((opiece[i].name.charAt(1) =='P') &&opiece[i].exist){
                   int PX =0;
                   int PY = 0;
                   for (int k =0; k<demensions; k++) {
@@ -102,10 +114,10 @@ void schaak( piece[] tpiece, piece[] opiece, int piececo, int[] Kcords) {
 
                       PX++;
                     }
-                    if ( (opiece[i].cordinates[k]- npiece[kingnum].cordinates[k]) == 1 && k >=demensions/2 && npiece[i].name.charAt(0) =='W') {
+                    if ( (opiece[i].cordinates[k]- npiece[kingnum].cordinates[k]) == 1 && k >=demensions/2 && npiece[i].name.charAt(0) =='W' && opiece[i].exist) {
                       PY++;
                     }
-                    if ( (opiece[i].cordinates[k]- npiece[kingnum].cordinates[k]) == -1 && k >=demensions/2 && npiece[i].name.charAt(0) =='B') {
+                    if ( (opiece[i].cordinates[k]- npiece[kingnum].cordinates[k]) == -1 && k >=demensions/2 && npiece[i].name.charAt(0) =='B' && opiece[i].exist) {
                       PY++;
                     }
 
@@ -121,7 +133,6 @@ void schaak( piece[] tpiece, piece[] opiece, int piececo, int[] Kcords) {
         }
       }
     
-  
 }
 void Rookschaak(piece[] npiece, piece[] opiece, int piececo, int[] countcord, int pieceR) {
   boolean block = false;
@@ -194,4 +205,4 @@ void Bischschaak(piece[] npiece, piece[] opiece, int piececo, int[] countcord, i
   if (block == true) {
     schaakrookscheck = false;
   }
-}
+} 

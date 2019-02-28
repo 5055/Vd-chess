@@ -68,9 +68,10 @@ void control( piece[] tpiece, piece[] opiece, int piececo, int[] contcord) {
             }
           }
           if (checkOside == demensions/2 ) {
-            upgrade(tpiece, piececo);
+      //      upgrade(tpiece, piececo);
           } else {
             tpiece[piececo].F = false;
+     //        schaakmat(tpiece,opiece);
             switchturn();
           }
         }
@@ -106,6 +107,7 @@ void control( piece[] tpiece, piece[] opiece, int piececo, int[] contcord) {
             }
           }
           tpiece[piececo].F = false;
+          schaakmat(tpiece,opiece);
           switchturn();
         }
       }

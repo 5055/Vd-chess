@@ -4,13 +4,13 @@ String selectP =null;
 boolean turn =true;
 boolean validcol =false;
 float pieceSize = 10;
-int demensions =4;
+int demensions =2;
 int upgradeunit =0;
 char upgradetype='W';
 float rdemensions =demensions/2;
 float tNumpieces = pow( 8, ceil(rdemensions)) ;
 int Numpieces =(int) (tNumpieces+tNumpieces*(rdemensions));
-boolean schaakSelf = false;
+boolean schaakSelf = true;
 float displx =0;
 float disply =0;
 int updatenumber = 0;
@@ -20,6 +20,7 @@ boolean selfschaak =true;
 boolean schaakrookscheck =true;
 boolean schaakmatrookscheck = true;
 boolean upgradeP = false;
+int schaakmatcount=0;
 piece[] wpiece; 
 piece[] npiece; 
 piece[] bpiece;
@@ -165,6 +166,7 @@ void keyTyped() {
 
         wpiece[upgradeunit].name = 'W' + str(key).toUpperCase()+ "";
         wpiece[upgradeunit].F = false;
+         schaakmat(wpiece,bpiece);
         switchturn();
         upgradeP = false;
         update();
@@ -174,6 +176,7 @@ void keyTyped() {
       if (key == 'Q' ||key == 'R'|| key == 'N' ||key == 'B' ||key == 'q' ||key == 'r'|| key == 'n' ||key == 'b') {
         bpiece[upgradeunit].name = 'B' + str(key).toUpperCase()+ "";
         bpiece[upgradeunit].F = false;
+                 schaakmat(bpiece,wpiece);
         switchturn();
         upgradeP = false;
         update();

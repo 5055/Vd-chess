@@ -21,9 +21,9 @@ class piece {
 
 
   void display() {
-/*       if (name.charAt(1) != 'R'&& name.charAt(1) != 'K') {
+       if (name.charAt(1) != 'R'&& name.charAt(1) != 'K') {
      exist =false;
-     }*/
+     }
 
     int tempxcalc =0;
     int tempycalc =0;
