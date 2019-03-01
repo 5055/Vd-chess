@@ -68,10 +68,10 @@ void control( piece[] tpiece, piece[] opiece, int piececo, int[] contcord) {
             }
           }
           if (checkOside == demensions/2 ) {
-      //      upgrade(tpiece, piececo);
+            //      upgrade(tpiece, piececo);
           } else {
             tpiece[piececo].F = false;
-     //        schaakmat(tpiece,opiece);
+            //        schaakmat(tpiece,opiece);
             switchturn();
           }
         }
@@ -107,7 +107,7 @@ void control( piece[] tpiece, piece[] opiece, int piececo, int[] contcord) {
             }
           }
           tpiece[piececo].F = false;
-          schaakmat(tpiece,opiece);
+          schaakmat(tpiece, opiece);
           switchturn();
         }
       }
@@ -126,28 +126,28 @@ void control( piece[] tpiece, piece[] opiece, int piececo, int[] contcord) {
     if (validself_1 ==demensions-1 && validself_2 ==1) {
       collision(tpiece, opiece, piececo, contcord);
       if (coll) {
-                schaak(tpiece, opiece, piececo, contcord);
+        schaak(tpiece, opiece, piececo, contcord);
         if (selfschaak) {
-        for (int i =0; i<demensions; i ++) {
-          tpiece[piececo].cordinates[i] = contcord[i];
-        }
-        for (int m =0; m<opiece.length; m++) {
-          if ((m%10000 -2000) <6000) {
-            if ((m%1000 -200) <600) {
-              if ((m%100 -20) <60) {
-                if ((m%10 -2) <6) {
-                  if (Arrays.equals(tpiece[piececo].cordinates, opiece[m].cordinates) && opiece[m].exist && tpiece[piececo].exist) {
-                    opiece[m].exist =false;
+          for (int i =0; i<demensions; i ++) {
+            tpiece[piececo].cordinates[i] = contcord[i];
+          }
+          for (int m =0; m<opiece.length; m++) {
+            if ((m%10000 -2000) <6000) {
+              if ((m%1000 -200) <600) {
+                if ((m%100 -20) <60) {
+                  if ((m%10 -2) <6) {
+                    if (Arrays.equals(tpiece[piececo].cordinates, opiece[m].cordinates) && opiece[m].exist && tpiece[piececo].exist) {
+                      opiece[m].exist =false;
+                    }
                   }
                 }
               }
             }
           }
+          tpiece[piececo].F = false;
+          schaakmat(tpiece, opiece);
+          switchturn();
         }
-        tpiece[piececo].F = false;
-        schaakmat(tpiece,opiece);
-        switchturn();
-      }
       }
     }
   }
@@ -180,7 +180,7 @@ void control( piece[] tpiece, piece[] opiece, int piececo, int[] contcord) {
           }
         }
         tpiece[piececo].F = false;
-        schaakmat(tpiece,opiece);
+        schaakmat(tpiece, opiece);
         switchturn();
       }
     }
