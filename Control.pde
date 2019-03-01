@@ -176,6 +176,7 @@ void control( piece[] tpiece, piece[] opiece, int piececo, int[] contcord) {
           }
         }
         tpiece[piececo].F = false;
+        schaakmat(tpiece,opiece);
         switchturn();
       }
     }
