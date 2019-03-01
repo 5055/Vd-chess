@@ -174,6 +174,25 @@ for (int i =0; i<wpiece.length; i++) {
          
          
          
+                         if ((opiece[i].name.charAt(1) == 'N')&&opiece[i].exist) {
+                  int N1 =0;
+                  int N2 = 0;
+                  for (int k =0; k<demensions; k++) {
+                    if ( abs(opiece[i].cordinates[k]- npiece[kingnum].cordinates[k]) == 2) {
+                      N2++;
+                    }
+                    if ( abs(opiece[i].cordinates[k]- npiece[kingnum].cordinates[k]) == 1) {
+                      N1++;
+                    }
+                  }
+                  if (N1 == demensions-1 && N2 ==1) {
+                    schaakmatcount++;
+                     println(npiece[kingnum].cordinates[0],npiece[kingnum].cordinates[1]);
+                  }
+                }
+         
+         
+         
          
 
        }
