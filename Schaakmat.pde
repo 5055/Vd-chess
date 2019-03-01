@@ -11,8 +11,8 @@
               if ((j%10 -2) <6) {  
                 int[] Scordinate = new int[demensions];
                 for (int i =0; i<demensions; i ++) {
-
-                  if (npiece[j].name.charAt(1) == 'K') {
+ ////     println(npiece[j].name);
+                  if (opiece[j].name.charAt(1) == 'K') {
                     
                     Scordinate[i] =opiece[j].cordinates[i];
                     
@@ -70,6 +70,17 @@ if(num >0){
         }
       }
         schaakmat2(tpiece, npiece,kingnum); 
+            int tempxcalc =0;
+          int tempycalc =0;
+              for (int i =0; i<demensions/2; i ++) {
+        float powercalc = pow(10, i); 
+        tempxcalc = tempxcalc + npiece[kingnum].cordinates[i]*((int) powercalc);
+        tempycalc = tempycalc + npiece[kingnum].cordinates[i+npiece[kingnum].cordinates.length/2]*((int) powercalc);
+      }
+
+      ellipse(tempxcalc*pieceSize + pieceSize/2 + displx, tempycalc*pieceSize +pieceSize/2+ disply, pieceSize, pieceSize);
+  //    fill(0);
+    //  text(name.charAt(1), tempxcalc*pieceSize +pieceSize/2 + displx, tempycalc*pieceSize +pieceSize+ disply);
     Z++;
     }  
     println(schaakmatcount);
@@ -110,9 +121,10 @@ for (int i =0; i<wpiece.length; i++) {
           
                  Rookschaakmat(npiece, opiece, kingnum, nKcord, i);
                  if (schaakmatrookscheck) {
-                     println(npiece[kingnum].cordinates[0],npiece[kingnum].cordinates[1]);
+ // println(npiece[kingnum].cordinates[0],npiece[kingnum].cordinates[1],npiece[kingnum].cordinates[2],npiece[kingnum].cordinates[3],npiece[kingnum].cordinates[4],npiece[kingnum].cordinates[5]);
                         //println("sss");
                        outBcancel = true;
+                       println(npiece[kingnum].cordinates[0],npiece[kingnum].cordinates[1]);
                    schaakmatcount++;
 
                  }
@@ -126,9 +138,10 @@ for (int i =0; i<wpiece.length; i++) {
           
                  Rookschaakmat(npiece, opiece, kingnum, nKcord, i);
                  if (schaakmatrookscheck) {
-                     println(npiece[kingnum].cordinates[0],npiece[kingnum].cordinates[1]);
+ // println(npiece[kingnum].cordinates[0],npiece[kingnum].cordinates[1],npiece[kingnum].cordinates[2],npiece[kingnum].cordinates[3],npiece[kingnum].cordinates[4],npiece[kingnum].cordinates[5]);
                         //println("sss");
                        outBcancel = true;
+                        println(npiece[kingnum].cordinates[0],npiece[kingnum].cordinates[1]);
                    schaakmatcount++;
 
                  }
@@ -136,6 +149,32 @@ for (int i =0; i<wpiece.length; i++) {
              }
            }
          }
+         
+         
+         
+         
+                         if ((opiece[i].name.charAt(1) == 'B'||opiece[i].name.charAt(1) == 'Q' )&&opiece[i].exist) {
+                  int bcordblock = 0;
+                  int Bfirstcord= opiece[i].cordinates[0] -npiece[kingnum].cordinates[0];
+                  for (int k =0; k<demensions; k++) {
+                    if (abs(Bfirstcord) == abs(opiece[i].cordinates[k] -npiece[kingnum].cordinates[k])) {
+                      bcordblock++;
+                    }
+                  }
+                  if (bcordblock == demensions) {
+                    Bischschaakmat(npiece, opiece, kingnum, nKcord, i);
+                    if (schaakmatrookscheck) {
+                      outBcancel = true;
+                      println(npiece[kingnum].cordinates[0],npiece[kingnum].cordinates[1]);
+                   schaakmatcount++;
+                    }
+                  }
+                }
+         
+         
+         
+         
+         
 
        }
      }
@@ -144,6 +183,7 @@ for (int i =0; i<wpiece.length; i++) {
 }
 if(outB && !outBcancel){ 
   println(npiece[kingnum].cordinates[0],npiece[kingnum].cordinates[1]);
+//  println(npiece[kingnum].cordinates[0],npiece[kingnum].cordinates[1],npiece[kingnum].cordinates[2],npiece[kingnum].cordinates[3],npiece[kingnum].cordinates[4],npiece[kingnum].cordinates[5]);
 schaakmatcount++;
 }
 
@@ -179,7 +219,7 @@ void Rookschaakmat(piece[] npiece, piece[] opiece, int piececo, int[] countcord,
               if ((i%10 -2) <6) {
                 if ((Arrays.equals(countcord, opiece[i].cordinates) && opiece[i].exist)|| (Arrays.equals(countcord, npiece[i].cordinates)&& npiece[i].exist && npiece[i].name.charAt(1) != 'K')) {
                     //       println("tttt");
-                    println(npiece[4].cordinates[0],npiece[4].cordinates[1]);
+               //     println(npiece[4].cordinates[0],npiece[4].cordinates[1]);
                   schaakmatrookscheck = false;
                 }
               }
@@ -193,4 +233,37 @@ void Rookschaakmat(piece[] npiece, piece[] opiece, int piececo, int[] countcord,
 //  println(schaakmatrookscheck);
 if (!schaakmatrookscheck){
 }
+}
+void Bischschaakmat(piece[] npiece, piece[] opiece, int piececo, int[] countcord, int pieceR) {
+  boolean bisblock =true;
+  boolean block= false;
+  int a = 0;
+  while ( a< 8) {
+    for (int i =0; i<wpiece.length; i++) {
+      if ((i%10000 -2000) <6000) {
+        if ((i%1000 -200) <600) {
+          if ((i%100 -20) <60) {
+            if ((i%10 -2) <6) {
+              if ((Arrays.equals(countcord, opiece[i].cordinates) && opiece[i].exist && opiece[i].name.charAt(1) != 'B')|| (Arrays.equals(countcord, npiece[i].cordinates)&& npiece[i].exist && npiece[i].name.charAt(1) != 'K')) {
+                bisblock = true;
+                println(opiece[i].name);
+              }
+            }
+          }
+        }
+      }
+    }
+    for (int k =0; k<demensions; k++) {
+      if (countcord[k]-opiece[pieceR].cordinates[k] <=0) {
+        countcord[k]++;
+      }
+      if (countcord[k]-opiece[pieceR].cordinates[k] >= 0) {
+        countcord[k]--;
+      }
+    }
+    a++;
+  }
+  if (block == true) {
+    schaakmatrookscheck = false;
+  }
 }
