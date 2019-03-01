@@ -126,6 +126,8 @@ void control( piece[] tpiece, piece[] opiece, int piececo, int[] contcord) {
     if (validself_1 ==demensions-1 && validself_2 ==1) {
       collision(tpiece, opiece, piececo, contcord);
       if (coll) {
+                schaak(tpiece, opiece, piececo, contcord);
+        if (selfschaak) {
         for (int i =0; i<demensions; i ++) {
           tpiece[piececo].cordinates[i] = contcord[i];
         }
@@ -145,10 +147,11 @@ void control( piece[] tpiece, piece[] opiece, int piececo, int[] contcord) {
         tpiece[piececo].F = false;
         switchturn();
       }
+      }
     }
   }
 
-  if (tpiece[piececo].name.charAt(1) == 'B') {
+  if (tpiece[piececo].name.charAt(1) == 'B' && !Arrays.equals(contcord, tpiece[piececo].cordinates)) {
     boolean validself =true;
     int r = abs(tpiece[piececo].cordinates[0] - contcord[0]);
     for (int i =0; i<demensions; i ++) {
@@ -243,7 +246,7 @@ void control( piece[] tpiece, piece[] opiece, int piececo, int[] contcord) {
       }
     }
   }
-  if (tpiece[piececo].name.charAt(1) == 'Q') {
+  if (tpiece[piececo].name.charAt(1) == 'Q' && !Arrays.equals(contcord, tpiece[piececo].cordinates)) {
     int validselfR =0;
     boolean validselfB =true;
     int r = abs(tpiece[piececo].cordinates[0] - contcord[0]);
