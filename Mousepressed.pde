@@ -1,4 +1,5 @@
 void mousePressed() {
+  if(!win){
   if (!upgradeP) {
     coords = new int[0];
     int xCoord = mouseX; 
@@ -65,5 +66,6 @@ void mousePressed() {
     // println(selectP);
     // selectP = null;
     update();
+  }
   }
 }
