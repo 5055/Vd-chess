@@ -3,7 +3,8 @@ int[] coords = {};
 String selectP =null;
 boolean turn =true;
 boolean validcol =false;
-float pieceSize = 10;
+float spieceSize = 10;
+float pieceSize = spieceSize;
 int demensions =4;
 int upgradeunit =0;
 char upgradetype='W';
@@ -20,6 +21,8 @@ boolean selfschaak =true;
 boolean schaakrookscheck =true;
 boolean schaakmatrookscheck = true;
 boolean upgradeP = false;
+boolean win = false;
+boolean sco = true;
 piece[] wpiece; 
 piece[] npiece; 
 piece[] bpiece;
@@ -139,6 +142,7 @@ void draw() {
   }
 }
 void mouseDragged() {
+  println(pieceSize);
   updatenumber =0;
   if (displx>0) {
     displx =0;
@@ -151,10 +155,25 @@ void mouseDragged() {
 }
 
 void mouseWheel(MouseEvent event) {
-  pieceSize=pieceSize * pow( 10, -event.getCount());
-  displx =displx * pow( 10, -event.getCount());
-  disply =disply * pow( 10, -event.getCount());
+  int nmouseX = (int)(mouseX/100);
+  int nmouseY = (int)(mouseY/100);
+ // println(nmouseX);
+  if(sco){
+    sco = false;
+  if(-event.getCount()>0 && pieceSize <spieceSize*10 ){
+  displx =displx * pow( 10, -event.getCount()) -nmouseX*1000;
+  println(displx);
+  disply =disply * pow( 10, -event.getCount())- nmouseY*1000;
+  pieceSize=pieceSize* 10;
+  }
+  else  if(-event.getCount()<0&& pieceSize >pow( 10,(2-demensions/2))*10){
+    pieceSize=pieceSize/ 10;
+    displx = floor((floor(displx/100)*10-4*floor(displx/100))/100)*100;
+    disply = floor((floor(disply/100)*10-4*floor(disply/100))/100)*100;
+  }
   update();
+  sco = true;
+}
 }
 void keyTyped() {
   // println(key);
